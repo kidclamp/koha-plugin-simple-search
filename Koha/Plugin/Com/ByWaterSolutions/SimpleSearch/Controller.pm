@@ -34,7 +34,7 @@ sub search {
     my $offset = $c->validation->param('offset');
     my $max_results = $c->validation->param('maxx_results');
     my $plugin   = Koha::Plugin::Com::ByWaterSolutions::SimpleSearch->new();
-    my $results = $plugin->search( $query, $offset, $max_results );
+    my $results = $plugin->simple_search( $query, $offset, $max_results );
 
     unless ($query) {
         return $c->render( status => 404, openapi => { error => "No query." } );
