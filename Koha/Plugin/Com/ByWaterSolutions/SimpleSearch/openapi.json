@@ -1,0 +1,27 @@
+{
+  "/search/{query}": {
+    "get": {
+      "x-mojo-to": "Com::ByWaterSolutions::SimpleSearch::Controller#search",
+      "operationId": "SimpleSearch",
+      "tags": ["searcg"],
+      "parameters": [{
+        "name": "query",
+        "in": "path",
+        "description": "Search query",
+        "required": true,
+        "type": "string"
+      }],
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "Search results"
+        },
+        "404": {
+          "description": "An error occured"
+        }
+      }
+    }
+  }
+}
