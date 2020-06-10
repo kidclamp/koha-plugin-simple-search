@@ -9,6 +9,7 @@ use base qw(Koha::Plugins::Base);
 ## We will also need to include any Koha libraries we want to access
 use C4::Context;
 use C4::Auth;
+use C4::Search;
 use Koha::Patron;
 use Koha::DateUtils;
 use Koha::Libraries;
@@ -140,7 +141,8 @@ sub simple_search {
 
     my @return;
     foreach my $result ( @$results ){
-        push @return, $result->to_mij;
+        my $marc_record = C4::Search::new_record_from_zebra( 'biblioserver', $result);
+        push @return, $marc_record->to_mij;
     }
 
     return \@return;
